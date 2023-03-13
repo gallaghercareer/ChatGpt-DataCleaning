@@ -7,7 +7,7 @@ import pdfkit
 from fpdf import FPDF
 
 def save_file(filepath, content):
-    with open(filepath, 'w', encoding='ASCII') as outfile:
+    with open(filepath, 'w', encoding='utf-8') as outfile:
         outfile.write(content)
 
 #convert many .DocX to TXTs

@@ -1,7 +1,6 @@
 
 
-#File named preprocess_tool.py
-import fpdf
+#File named preprocess_tool.pyimport fpdf
 import re
 from nltk.corpus import stopwords
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
@@ -13,12 +12,13 @@ import converter
 
 
 # Prompt the user to input the location and name of the PDF file
-input_file = "/Users/yanni/Downloads/LifeInsurance.pdf"
+input_file = "/Users/yanni/Downloads/accounting.pdf"
 
-# input('Enter the location and name of the PDF file to preprocess: ')
-output_file = "/Users/yanni/Documents/GitHub/ChatGpt-DataCleaning/VsCode/output/insuranceOutput.txt"
+#where should we put the new txt?
+output_file = "/Users/yanni/Documents/GitHub/ChatGpt-DataCleaning/VsCode/output/accounting.txt"
 
-output_directory = "/Users/yanni/Documents/GitHub/ChatGpt-DataCleaning/VsCode/output/InsuranceOutput.pdf"
+# where should we put the post processed pdf?
+output_directory = "/Users/yanni/Documents/GitHub/ChatGpt-DataCleaning/VsCode/output/accountingOutput.pdf"
 
 txt_2_pdf_output_directory_filename = "/Users/yanni/Documents/GitHub/ChatGpt-DataCleaning/VsCode/output/output.pdf"
 
@@ -31,10 +31,10 @@ converter.convert_pdf_to_txt(input_file,output_file)
 print("----------Begin Cleaning of Output--------------")
 text = None 
 
-with open(f"{output_file}", "r") as file:
+with open(f"{output_file}", "r", encoding='utf-8') as file:
     text = file.read()
 
-with open(f"{output_file}","w") as outfile:
+with open(f"{output_file}","w", encoding='utf-8') as outfile:
      #remove newlines
     text = re.sub('\n', ' ', text)
     # Remove interpuncts
@@ -61,7 +61,7 @@ with open(f"{output_file}","w") as outfile:
 file = open(output_file)
 output_file_text = file.read()
 file.close()
-converter.convert_txt_to_pdf(output_file_text, txt_2_pdf_output_directory_filename)
+converter.convert_txt_to_pdf(output_file_text, output_directory)
 print("----------COMPLETED Cleaning of Output--------------")
 
 
